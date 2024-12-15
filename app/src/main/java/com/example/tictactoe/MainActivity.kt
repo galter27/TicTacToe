@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity() {
         CROSS
     }
 
+    private var crossesScore = 0
+    private var noughtsScore = 0
+
     private var firstTurn = Turn.CROSS
     private var currentTurn = Turn.CROSS
 
@@ -25,6 +28,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initBoard()
+
+        // Initialize scores
+        binding.xScoreTV.text = "X: $crossesScore"
+        binding.oScoreTV.text = "O: $noughtsScore"
     }
 
     private fun initBoard() {
@@ -82,14 +89,29 @@ class MainActivity : AppCompatActivity() {
     private fun match(button: Button, symbol: String): Boolean = button.text == symbol
 
     private fun result(title: String) {
+        // Increment scores based on the winner
+        if (title == "O Wins!") {
+            noughtsScore++
+        } else if (title == "X Wins!") {
+            crossesScore++
+        }
+
+        // Prepare the message to show in the dialog
+        val message = "\nCrosses $crossesScore\n\nNoughts $noughtsScore\n"
+
+        // Show the result dialog
         AlertDialog.Builder(this)
             .setTitle(title)
-            .setMessage("")
-            .setPositiveButton("Play Again") { _, _ ->
+            .setMessage(message)
+            .setPositiveButton("Reset") { _, _ ->
                 resetBoard()
             }
             .setCancelable(false)
             .show()
+
+        // Update the scores on the UI
+        binding.xScoreTV.text = "X: $crossesScore"
+        binding.oScoreTV.text = "O: $noughtsScore"
     }
 
     private fun resetBoard() {
@@ -135,4 +157,5 @@ class MainActivity : AppCompatActivity() {
         const val NOUGHT = "O"
         const val CROSS = "X"
     }
+
 }

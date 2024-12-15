@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- Turn Indicator -->
     <TextView
         android:id="@+id/turnTV"
         android:layout_width="wrap_content"
@@ -16,8 +17,39 @@
         android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
 
+    <!-- Score Section -->
+    <LinearLayout
+        android:id="@+id/scoreLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/turnTV"
+        android:layout_marginTop="16dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/xScoreTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X: 0"
+            android:textSize="20sp"
+            android:textColor="@color/blue"
+            android:paddingEnd="20dp" />
+
+        <TextView
+            android:id="@+id/oScoreTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="O: 0"
+            android:textSize="20sp"
+            android:textColor="@color/red" />
+    </LinearLayout>
+
+    <!-- Game Board -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -26,9 +58,8 @@
         android:padding="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scoreLayout"
         app:layout_constraintBottom_toBottomOf="parent">
-
 
         <LinearLayout
             style="@style/row">
@@ -104,8 +135,6 @@
                 style="@style/column" />
 
         </LinearLayout>
-
-
 
     </LinearLayout>
 
