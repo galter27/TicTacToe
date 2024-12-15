@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Prepare the message to show in the dialog
-        val message = "\nCrosses $crossesScore\n\nNoughts $noughtsScore\n"
+        val message = "\nX wins: $crossesScore\n\nO wins: $noughtsScore\n"
 
         // Show the result dialog
         AlertDialog.Builder(this)
